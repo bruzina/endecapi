@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "c29f233d-07fd-45fc-b878-704f41fb70f2",
+		"name": "Endecapi",
+		"description": "Simple and small demo Springboot application providing API for simple ciphers.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01e52b22-c96b-4740-bbd8-91ba7249fe1b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status response is UP\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(\"UP\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/actuator/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
+					]
+				},
+				"description": "Initial test to test Encdecapi is up and running."
+			},
+			"response": []
+		},
+		{
+			"name": "Crypt :: all defaults",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e759f0df-c25e-4c92-a271-68fb4d81c4ee",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Default payload is \\\"The quick brown fox...\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).to.eql(\"The quick brown fox jumps over the lazy dog :-)\");",
+							"});",
+							"pm.test(\"Default cipher is Caesar cipher\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.cipher).to.eql(\"caesar\");",
+							"});",
+							"pm.test(\"Default operation is encrypt\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.decrypt).to.eql(false);",
+							"});",
+							"pm.test(\"Default param is 3\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.params).to.eql([\"3\"]);",
+							"});",
+							"pm.test(\"Default result is \\\"Wkh ...\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql(\"Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj :-)\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/crypt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"crypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypt :: all defaults except decrypt and pyload",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8073b02-11a7-4f53-9d40-a3ddd669c83f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Default payload is \\\"The quick brown fox...\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).to.eql(\"The quick brown fox jumps over the lazy dog :-)\");",
+							"});",
+							"pm.test(\"Default cipher is Caesar cipher\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.cipher).to.eql(\"caesar\");",
+							"});",
+							"pm.test(\"Default operation is encrypt\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.decrypt).to.eql(false);",
+							"});",
+							"pm.test(\"Default param is 3\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.params).to.eql([\"3\"]);",
+							"});",
+							"pm.test(\"Default result is \\\"Wkh ...\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql(\"Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj :-)\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/crypt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"crypt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crypt :: ROT13",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "639f1c7b-104e-4876-8980-09dddf6f5ffe",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).to.eql(\"Why did the chicken cross the road? Gb trg gb gur bgure fvqr!\");",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql(\"Jul qvq gur puvpxra pebff gur ebnq? To get to the other side!\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/crypt?params=13&payload=Why did the chicken cross the road? Gb trg gb gur bgure fvqr!",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"crypt"
+					],
+					"query": [
+						{
+							"key": "params",
+							"value": "13"
+						},
+						{
+							"key": "payload",
+							"value": "Why did the chicken cross the road? Gb trg gb gur bgure fvqr!"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
