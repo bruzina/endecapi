@@ -5,15 +5,15 @@ public class Crypt {
     private final long id;
     private final String payload;
     private final Cipher cipher;
-    private final Boolean encrypt;
+    private final Boolean decrypt;
     private String result;
 
-    public Crypt(long id, Cipher cipher, String payload, Boolean encrypt) {
+    public Crypt(long id, Cipher cipher, String payload, Boolean decrypt) {
         this.id = id;
         this.cipher = cipher;
         this.payload = payload;
-        this.encrypt = encrypt;
-        this.result = encrypt ? cipher.encrypt(payload) : cipher.decrypt(payload);
+        this.decrypt = decrypt;
+        this.result = decrypt ? cipher.decrypt(payload) : cipher.encrypt(payload);
     }
 
     public long getId() {
@@ -28,8 +28,8 @@ public class Crypt {
         return cipher.getParams();
     }
 
-    public Boolean getEncrypt() {
-        return encrypt;
+    public Boolean getDecrypt() {
+        return decrypt;
     }
 
     public String getPayload() {

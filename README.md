@@ -42,3 +42,4 @@ snap install postman # Run and sign in manually afterwards
 ### See Also
 
 - [Wikipedia - Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
+- [Wikipedia - ROT13](https://en.wikipedia.org/wiki/ROT13)

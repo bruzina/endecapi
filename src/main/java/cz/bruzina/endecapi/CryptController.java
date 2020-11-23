@@ -12,7 +12,7 @@ public class CryptController {
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/crypt")
-    public Crypt crypt(@RequestParam(value = "encrypt", defaultValue = "true") String encrypt,
+    public Crypt crypt(@RequestParam(value = "decrypt", defaultValue = "false") String decrypt,
             @RequestParam(value = "cipher", defaultValue = "caesar") String cipherName,
             @RequestParam(value = "params", defaultValue = "") String[] params,
             @RequestParam(value = "payload", defaultValue = "The quick brown fox jumps over the lazy dog :-)") String payload)
@@ -23,7 +23,7 @@ public class CryptController {
         }
 
         cipher.setParams(params);
-        return new Crypt(counter.incrementAndGet(), cipher, payload, encrypt.equals("true"));
+        return new Crypt(counter.incrementAndGet(), cipher, payload, decrypt.equals("true"));
     }
 
 }
