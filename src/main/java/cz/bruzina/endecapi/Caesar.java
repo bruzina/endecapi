@@ -1,57 +1,52 @@
 package cz.bruzina.endecapi;
 
-public class Caesar implements Crypt {
+public class Caesar implements Cipher {
 
-    private final long id;
-    private final Boolean decrypt;
-    private final String cipher;
-    private final Integer shift;
-    private final String payload;
-    private String result;
+    private String[] params;
+    private Integer shift;
 
-    public Caesar(long id, Boolean decrypt, String cipher, Integer shift, String payload) {
-        this.id = id;
-        this.decrypt = decrypt;
-        this.cipher = cipher;
-        this.shift = shift;
-        this.payload = payload;
+    public Caesar() {
+    }
 
-        int normShift = decrypt ? 26 - shift : shift;
-        normShift = normShift % 26;
-        normShift = normShift < 0 ? 26 - normShift : normShift;
+    public String getName() {
+        return "caesar";
+    }
 
+    public void setParams(String[] params) {
+        this.params = params;
+        shift = normalizeShift(Integer.parseInt(params[0])); // TODO: pottential coding standards violation
+    }
+
+    public String[] getParams() {
+        return this.params;
+    }
+
+    public String encrypt(String payload) {
+        return shiftLetters(payload, shift);
+    }
+
+    public String decrypt(String payload) {
+        return shiftLetters(payload, 26 - shift);
+    }
+
+    private Integer normalizeShift(Integer shift) {
+        Integer normShift = shift % 26;
+        return normShift < 0 ? 26 - normShift : normShift;
+    }
+
+    private String shiftLetters(String payload, int realShift) {
         int len = payload.length();
-        this.result = "";
+        String result = "";
+
         for (int i = 0; i < len; i++) {
-            char c = (char) (payload.charAt(i) + normShift);
-            if (c > 'z')
-                this.result += (char) (payload.charAt(i) - (26 - normShift));
-            else
-                this.result += (char) (payload.charAt(i) + normShift);
+            char c = (char) (payload.charAt(i) + realShift);
+            if (c > 'z') {
+                result += (char) (payload.charAt(i) - (26 - realShift));
+            } else {
+                result += (char) (payload.charAt(i) + realShift);
+            }
         }
-    }
 
-    public long getId() {
-        return id;
-    }
-
-    public Boolean getDecrypt() {
-        return decrypt;
-    }
-
-    public String getCipher() {
-        return cipher;
-    }
-
-    public Integer getShift() {
-        return shift;
-    }
-
-    public String getPayload() {
-        return payload;
-    }
-
-    public String getResult() {
         return result;
     }
 }
