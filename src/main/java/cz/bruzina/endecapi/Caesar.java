@@ -14,7 +14,12 @@ public class Caesar implements Cipher {
 
     public void setParams(String[] params) {
         this.params = params;
-        shift = normalizeShift(Integer.parseInt(params[0])); // TODO: pottential coding standards violation
+        if (params.length == 0) {
+            shift = 3;
+        } else {
+            int origShift = Integer.parseInt(params[0]);
+            shift = normalizeShift(origShift);
+        }
     }
 
     public String[] getParams() {
@@ -29,8 +34,14 @@ public class Caesar implements Cipher {
         return shiftLetters(payload, 26 - shift);
     }
 
-    private Integer normalizeShift(Integer shift) {
-        Integer normShift = shift % 26;
+    /**
+     * Normalize shift to interval <0, 26)
+     * 
+     * @param origShift Original shift
+     * @return Normalized shift
+     */
+    private Integer normalizeShift(Integer origShift) {
+        Integer normShift = origShift % 26;
         return normShift < 0 ? 26 - normShift : normShift;
     }
 
@@ -39,11 +50,22 @@ public class Caesar implements Cipher {
         String result = "";
 
         for (int i = 0; i < len; i++) {
-            char c = (char) (payload.charAt(i) + realShift);
-            if (c > 'z') {
-                result += (char) (payload.charAt(i) - (26 - realShift));
+            char oldChar = (char) (payload.charAt(i));
+            char newChar = (char) (oldChar + realShift);
+            if (oldChar >= 'a' && oldChar <= 'z') { // begin intentionally WET
+                if (newChar > 'z') {
+                    result += (char) (newChar - 26);
+                } else {
+                    result += newChar;
+                }
+            } else if (oldChar >= 'A' && oldChar <= 'Z') {
+                if (newChar > 'Z') {
+                    result += (char) (newChar - 26);
+                } else {
+                    result += newChar;
+                } // end intentionally WET
             } else {
-                result += (char) (payload.charAt(i) + realShift);
+                result += oldChar;
             }
         }
 

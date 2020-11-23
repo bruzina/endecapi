@@ -38,3 +38,7 @@ snap install postman # Run and sign in manually afterwards
 - [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.4.0/gradle-plugin/reference/htmlsingle/)
 - [Gradle User Manual](https://docs.gradle.org/current/userguide/userguide.html)
 - [Postman | Documentation](https://learning.postman.com/docs/)
+
+### See Also
+
+- [Wikipedia - Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
