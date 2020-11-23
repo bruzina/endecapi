@@ -39,4 +39,5 @@ public class Crypt {
     public String getResult() {
         return result;
     }
+
 }

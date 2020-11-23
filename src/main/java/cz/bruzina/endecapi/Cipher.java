@@ -6,6 +6,11 @@ public interface Cipher {
 
     public void setParams(String[] params);
 
+    /**
+     * Get parameters as the cipher class understood them
+     * 
+     * @return Cipher parameters
+     */
     public String[] getParams();
 
     public String encrypt(String payload);

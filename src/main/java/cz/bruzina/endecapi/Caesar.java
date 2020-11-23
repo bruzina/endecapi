@@ -2,7 +2,6 @@ package cz.bruzina.endecapi;
 
 public class Caesar implements Cipher {
 
-    private String[] params;
     private Integer shift;
 
     public Caesar() {
@@ -13,7 +12,6 @@ public class Caesar implements Cipher {
     }
 
     public void setParams(String[] params) {
-        this.params = params;
         if (params.length == 0) {
             shift = 3;
         } else {
@@ -23,7 +21,8 @@ public class Caesar implements Cipher {
     }
 
     public String[] getParams() {
-        return this.params;
+        String[] params = { Integer.toString(shift) };
+        return params;
     }
 
     public String encrypt(String payload) {
@@ -71,4 +70,5 @@ public class Caesar implements Cipher {
 
         return result;
     }
+
 }
