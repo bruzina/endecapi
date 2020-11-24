@@ -1,7 +1,5 @@
 package cz.bruzina.endecapi;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
@@ -15,14 +13,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+public class CryptControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello world from Spring Boot!")));
+    public void crypt() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/crypt").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
+
 }
