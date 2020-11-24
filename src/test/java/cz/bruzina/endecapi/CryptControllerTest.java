@@ -1,7 +1,5 @@
 package cz.bruzina.endecapi;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
@@ -21,14 +19,8 @@ public class CryptControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getEncrypt() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/crypt").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-                .andExpect(content().string(equalTo("#todo")));
+    public void crypt() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/crypt").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 
-    @Test
-    public void getDecrypt() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/crypt").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-                .andExpect(content().string(equalTo("#todo")));
-    }
 }

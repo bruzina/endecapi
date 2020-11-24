@@ -2,7 +2,7 @@ package cz.bruzina.endecapi;
 
 public class Caesar implements Cipher {
 
-    private Integer shift;
+    private Integer shift = 3;
 
     public Caesar() {
     }
@@ -41,7 +41,7 @@ public class Caesar implements Cipher {
      */
     private Integer normalizeShift(Integer origShift) {
         Integer normShift = origShift % 26;
-        return normShift < 0 ? 26 - normShift : normShift;
+        return normShift < 0 ? normShift + 26 : normShift;
     }
 
     private String shiftLetters(String payload, int realShift) {
