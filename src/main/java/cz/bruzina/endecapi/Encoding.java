@@ -12,37 +12,37 @@ public class Encoding {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String from;
-    private String to;
+    private String setFrom;
+    private String setTo;
 
     protected Encoding() {
     }
 
-    public Encoding(String name, String from, String to) {
+    public Encoding(String name, String setFrom, String setTo) {
         this.name = name;
-        this.from = from;
-        this.to = to;
+        this.setFrom = setFrom;
+        this.setTo = setTo;
     }
 
     @Override
     public String toString() {
-        return String.format("Encoding[id=%d, name='%s', from='%s, to=%s']", id, from, to);
+        return String.format("Encoding[id=%d, name='%s', from='%s, to=%s']", id, name, setFrom, setTo);
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
+    public String getNamex() {
         return name;
     }
 
-    public String getFrom() {
-        return from;
+    public String setFrom() {
+        return setFrom;
     }
 
-    public String getTo() {
-        return to;
+    public String getTox() {
+        return setTo;
     }
 
 }
