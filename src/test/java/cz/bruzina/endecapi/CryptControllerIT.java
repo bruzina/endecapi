@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.net.URL;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +23,11 @@ public class CryptControllerIT {
     @Autowired
     private TestRestTemplate template;
 
-    @BeforeEach
-    public void setUp() throws Exception {
+    @Test
+    public void getDefault() throws Exception {
         this.base = new URL("http://localhost:" + port + "/crypt");
-    }
-
-    @Test
-    public void getEncrypt() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-        assertThat(response.getBody()).isEqualTo("#todo");
-    }
-
-    @Test
-    public void getDecrypt() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-        assertThat(response.getBody()).isEqualTo("#todo");
+        assertThat(response.getBody()).isEqualTo(
+                "{\"id\":1,\"payload\":\"The quick brown fox jumps over the lazy dog :-)\",\"cipher\":\"caesar\",\"decrypt\":false,\"result\":\"Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj :-)\",\"params\":[\"3\"]}");
     }
 }
